@@ -14,7 +14,7 @@ import java.nio.channels.FileChannel;
 
 public class GestionFichiers {
 
-	public static void main(String[] args) {
+	public static void main(String[] args)    {
 		//GererFichier();
 		//GererBinaire();
 		//WriteBinaire();
