@@ -25,6 +25,7 @@ public class GestionFichiers {
 	 */
 	private static void learnReadFile() {
 		//On déclare et initialise l'objet BufferedRead
+		// Ce n'est pas un flux(stream), c'est un buffer!!!!
 		BufferedReader br=null;
 		//On définit la ligne courante qu'on lit
 		String sCurrentLine=null;
