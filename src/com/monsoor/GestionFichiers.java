@@ -8,6 +8,9 @@ import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.io.RandomAccessFile;
+import java.nio.ByteBuffer;
+import java.nio.channels.FileChannel;
 
 public class GestionFichiers {
 
@@ -15,8 +18,53 @@ public class GestionFichiers {
 		//GererFichier();
 		//GererBinaire();
 		//WriteBinaire();
-		learnReadFile();	
+		//learnReadFile();
+		AnotherMethodReadFile();
 		
+	}
+
+
+	/**
+	 * 
+	 */
+	private static void AnotherMethodReadFile() {
+		RandomAccessFile aFile = null;
+		try {
+			aFile = new RandomAccessFile("C:\\Users\\ACI\\Documents\\FichierALire3.txt","r");
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		FileChannel inChannel=aFile.getChannel();
+		// Le buffer est un conteneur et il ya une taille 1024
+		ByteBuffer buffer=ByteBuffer.allocate(1024);
+		try {
+			while(inChannel.read(buffer) > 0) {
+				//On lit le contenu du buffer
+				buffer.flip();
+				//On lit chaque lettre du buffer
+				for(int i=0;i<buffer.limit();i++) {
+					System.out.print((char)buffer.get());
+				}
+				//On vide le buffer
+				buffer.clear();
+			}
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		try {
+			inChannel.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		try {
+			aFile.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 
